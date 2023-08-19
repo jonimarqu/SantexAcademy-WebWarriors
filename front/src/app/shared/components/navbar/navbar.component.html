@@ -1,5 +1,5 @@
 <header
-  class="fixed top-0 w-full flex flex-col p-6 bg-white z-20 lg:gap-4 lg:relative"
+  class="fixed top-0 left-0 w-full flex flex-col p-6 bg-white z-20 lg:gap-4 lg:relative"
 >
   <div class="w-full flex items-center justify-between">
     <figure class="flex items-center gap-2">
@@ -29,7 +29,15 @@
       <li>Quienes somos</li>
       <li>¿Tienes dudas? <i class="bx bx-chevron-down"></i></li>
       <li>Contacto</li>
-      <i class="bx bx-search"></i>
+      <li class="font-bold"><a routerLink="/login">Iniciar sesión</a></li>
+      <li>
+        <a
+          routerLink="/differential-register"
+          class="py-1 px-4 bg-darkSlateBlue text-white rounded-md font-bold"
+          >Registrarse</a
+        >
+      </li>
+      <i class="bx bx-search lg:text-xl"></i>
     </ul>
   </div>
 
@@ -44,6 +52,17 @@
       <li>Testimonios de voluntarios</li>
       <li class="lg:hidden">Contacto</li>
       <li>FAQ</li>
+      <div class="w-[90%] h-[.5px] my-4 bg-lightGray lg:hidden"></div>
+      <li
+        class="flex flex-col items-center justify-center gap-4 font-bold lg:hidden"
+      >
+        <a routerLink="/login">Iniciar sesión</a>
+        <a
+          routerLink="/differential-register"
+          class="py-1 px-4 bg-darkSlateBlue text-white rounded-md font-bold"
+          >Registrarse</a
+        >
+      </li>
     </ul>
   </nav>
 </header>

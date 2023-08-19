@@ -1,0 +1,16 @@
+<section class="w-full flex items-center justify-center mb-16">
+  <swiper-container
+    slides-per-view="3"
+    loop="true"
+    navigation="true"
+    class="mySwiper"
+  >
+    <ng-container *ngFor="let image of images">
+      <swiper-slide class="flex items-center justify-center">
+        <figure class="w-[150px]">
+          <img [src]="image" class="w-full h-full object-cover" />
+        </figure>
+      </swiper-slide>
+    </ng-container>
+  </swiper-container>
+</section>
