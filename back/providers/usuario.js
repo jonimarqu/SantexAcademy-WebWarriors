@@ -47,10 +47,10 @@ const createUser = async (usuario) => {
     await transaction.commit();
 
     // Devolver el nuevo registro de usuario
-    return{
-      id:newUser.id,
-      fullName:newUser.fullName,
-      email:newUser.email,
+    return {
+      id: newUser.id,
+      fullName: newUser.fullName,
+      email: newUser.email,
     }
   } catch (err) {
     if (transaction) {
@@ -65,12 +65,12 @@ const getUsersByCriteria = async (queryOptions, bodyOptions) => {
   try {
     const options = { ...queryOptions, ...bodyOptions }; // Combinar las opciones de búsqueda
     const where = {}; // Excluir registros eliminados lógicamente
-    const validOptions = ['id', 'fullName', 'telefono','email'];
+    const validOptions = ['id', 'fullName', 'telefono', 'email'];
 
     validOptions.forEach((option) => {
       if (options[option]) where[option] = options[option];
     });
-    where.deletedAt = null;
+    // where.deletedAt = null;
 
     const organizations = await Usuario.findAll({
       where,
@@ -123,7 +123,7 @@ const deleteUserById = async (id) => {
     await CestaRecompensas.destroy({ where: { id: id } });
 
 
-    
+
 
     return user;
   } catch (error) {
@@ -136,4 +136,4 @@ const deleteUserById = async (id) => {
 
 
 
-module.exports = {createUser, getUsersByCriteria, updateUserById, deleteUserById }
+module.exports = { createUser, getUsersByCriteria, updateUserById, deleteUserById }
