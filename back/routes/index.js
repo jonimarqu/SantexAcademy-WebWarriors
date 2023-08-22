@@ -10,6 +10,7 @@ const routes = express();
 const catalogoRouter = require('./catalogo');
 const orgRoutes = require('./organizaciones');
 const userRoutes = require('./usuario');
+const productRouter = require('./producto');
 
 routes.use('/ping', (req, res) => {
   res.json({
@@ -20,16 +21,12 @@ routes.use('/ping', (req, res) => {
 routes.use('/catalogo', catalogoRouter);
 routes.use('/org', orgRoutes);
 routes.use('/productos', productRouter);
+routes.use('/user', userRoutes);
 
 // routes.use('/', rootPath.handler);
 // routes.use(rootPath.setHeaders);
 // routes.use(errors.handler);
 
-<<<<<<< HEAD
-routes.use('/catalogo', catalogoRouter);
-routes.use('/org', orgRoutes);
-routes.use('/user', userRoutes);
 
-=======
->>>>>>> 0ebccb959db36f0fca4205090b3200c2f0a2f873
+
 module.exports = routes;
