@@ -3,15 +3,18 @@ require("dotenv").config();
 
 // Se crea la instancia de sequelize con los datos de conexión a la base de datos en el CONSTRUCTOR
 const sequelize = new Sequelize(
-  process.env.DB_DATABASE,
-  process.env.DB_USERNAME,
-  process.env.DB_PASSWORD,
+  process.env.DB_URL,
 
-  // luego se pasa un objeto de configuración con el host y el dialecto
-  {
-    host: process.env.DB_HOST,
-    dialect: "mysql",
-  }
+  //TODO!! ***---PARA RAILWAY NO SE NECESITAN ESTOS PARAMETROS---*****
+  // process.env.DB_DATABASE,
+  // process.env.DB_USERNAME,
+  // process.env.DB_PASSWORD,
+
+  // // luego se pasa un objeto de configuración con el host y el dialecto
+  // {
+  //   host: process.env.DB_HOST,
+  //   dialect: "mysql",
+  // }
 );
 
 const initializeDB = async () => {
@@ -20,7 +23,7 @@ const initializeDB = async () => {
     console.log("Conection to DB established.");
 
     // Sync all defined models to DB
-    await sequelize.sync({ force: false }); // force: if true, each start deletes DB
+    await sequelize.sync({ force: true }); // force: if true, each start deletes DB
 
     // Create default roles
     const { Roles } = require("../models");
