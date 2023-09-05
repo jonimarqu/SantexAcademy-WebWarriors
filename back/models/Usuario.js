@@ -73,6 +73,7 @@ const Usuario = sequelize.define(
         fields: [
           { name: "id" },
           { name: "rolesId" },
+          { name: "cestaRecompensasId" },
         ],
       },
       {
@@ -86,7 +87,11 @@ const Usuario = sequelize.define(
         using: "BTREE",
         fields: [{ name: "rolesId" }],
       },
-
+      {
+        name: "fk_usuario_cestaRecompensas1_idx",
+        using: "BTREE",
+        fields: [{ name: "cestaRecompensasId" }],
+      },
     ],
   }
 );

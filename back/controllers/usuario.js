@@ -35,12 +35,9 @@ const loginUser = async (req, res) => {
   }
 };
 
-
-
 const getUserProfile = async (req, res) => {
   try {
-    const { id } = req.params;
-    const userProfile = await userService.getUserProfile(id);
+    const userProfile = await userService.getUserProfile(req.user.userId);
     res.status(200).json(userProfile);
   } catch (err) {
     console.error(err);

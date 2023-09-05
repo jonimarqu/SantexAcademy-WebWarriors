@@ -25,6 +25,7 @@ const loginUser = async (email, password) => {
     throw new Error(error);
   }
 };
+
 const getUserProfile = async (id) => {
   try {
     const userProfile = await Usuario.findOne({
@@ -32,7 +33,7 @@ const getUserProfile = async (id) => {
         id: id,
         deletedAt: null,
       },
-      include: [{ model: CestaRecompensas, as: 'cestaRecompensa' }],
+      include: [{ model: Carrito }],
       exclude: ["password"],
       attributes: { exclude: ["deletedAt"] },
     });
@@ -71,7 +72,7 @@ const createUser = async (usuario) => {
       await existingDeletedUser.destroy()
     }
 
-    //Crear un registro en la tabla cestaRecompensas
+    // Crear un registro en la tabla cestaRecompensas
     const newCestaRecompensas = await CestaRecompensas.create(
       { name: `Cesta de ${usuario.fullName}` },
       { transaction }
@@ -81,8 +82,7 @@ const createUser = async (usuario) => {
     const newUser = await Usuario.create(
       {
         ...usuario,
-
-        basketRewardsId: newCestaRecompensas.id,
+        cestaRecompensasId: newCestaRecompensas.id,
 
     
       //Si en el body no se pasa un valor para la columna rol, se le asigna el rol 1

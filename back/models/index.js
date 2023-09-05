@@ -12,37 +12,37 @@ const Voluntariado = require('./Voluntariado');
 
 Usuario.belongsTo(CestaRecompensas, {
   as: 'cestaRecompensa',
-  foreignKey: 'basketRewardsId',
+  foreignKey: 'cestaRecompensasId',
   onDelete: 'SET NULL',
 });
 CestaRecompensas.hasOne(Usuario, {
   as: 'usuario_cesto',
-  foreignKey: 'basketRewardsId',
-  onDelete: "SET NULL",
+  foreignKey: 'cestaRecompensasId',
+  // onDelete: "SET NULL",
 });
 CestaRecompensas.belongsToMany(Producto, {
   as: 'productoId_productos',
   through: ProductoEnCestaRecompensas,
-  foreignKey: 'basketRewardsId',
+  foreignKey: 'cestaRecompensasId',
   otherKey: 'productoId',
 });
 CestaRecompensas.belongsToMany(Roles, {
   as: 'rolesId_roles',
   through: Usuario,
-  foreignKey: 'basketRewardsId',
+  foreignKey: 'cestaRecompensasId',
   otherKey: 'rolesId',
 });
 Producto.belongsToMany(CestaRecompensas, {
-  as: 'basketRewardsId_cestaRecompensas',
+  as: 'cestaRecompensasId_cestaRecompensas',
   through: ProductoEnCestaRecompensas,
   foreignKey: 'productoId',
-  otherKey: 'basketRewardsId',
+  otherKey: 'cestaRecompensasId',
 });
 Roles.belongsToMany(CestaRecompensas, {
-  as: 'basketRewardsId_cestaRecompensas_usuarios',
+  as: 'cestaRecompensasId_cestaRecompensas_usuarios',
   through: Usuario,
   foreignKey: 'rolesId',
-  otherKey: 'basketRewardsId',
+  otherKey: 'cestaRecompensasId',
 });
 Usuario.belongsToMany(Voluntariado, {
   as: 'voluntariadoId_voluntariados',
@@ -60,11 +60,11 @@ Producto.belongsTo(Catalogo, { as: 'catalogo', foreignKey: 'catalogoId' });
 Catalogo.hasMany(Producto, { as: 'productos', foreignKey: 'catalogoId' });
 ProductoEnCestaRecompensas.belongsTo(CestaRecompensas, {
   as: 'cestaRecompensa',
-  foreignKey: 'basketRewardsId',
+  foreignKey: 'cestaRecompensasId',
 });
 CestaRecompensas.hasMany(ProductoEnCestaRecompensas, {
   as: 'productoEnCestaRecompensas',
-  foreignKey: 'basketRewardsId',
+  foreignKey: 'cestaRecompensasId',
 });
 
 Voluntariado.belongsTo(Organizacion, {
