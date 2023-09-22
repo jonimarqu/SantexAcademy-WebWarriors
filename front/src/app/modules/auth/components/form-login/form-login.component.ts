@@ -20,6 +20,7 @@ export class FormLoginComponent implements OnInit {
   statusSession: string = '';
   routeBtnContinue: string = '';
   textBtnModal: string = '';
+  isCoordinator: string = '';
 
   constructor(
     private router: Router,
@@ -46,7 +47,6 @@ export class FormLoginComponent implements OnInit {
 
       this.authService.loginVolunteer(userData).subscribe({
         next: (response) => {
-          console.log('Inicio de sesión exitoso', response);
           this.authService.setAuthToken(response.token);
           this.onModalStatus = true;
           this.statusSession = 'success-loginV';
@@ -54,7 +54,7 @@ export class FormLoginComponent implements OnInit {
           this.textBtnModal = 'Explorar Oportunidades';
         },
         error: (error) => {
-          console.error('Error en el inicio de sesión para voluntario', error);
+          console.error('login error', error);
           this.onModalStatus = true;
           this.statusSession = 'failed-login';
           this.routeBtnContinue = 'auth/login';
